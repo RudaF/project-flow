@@ -9,6 +9,7 @@ class SignUpForm extends Component {
     username: "",
     password: "",
     termsAgreement: false,
+    financeData = []
   };
 
   handleChange = (event) => {
