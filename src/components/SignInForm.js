@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class SignInForm extends Component {
   state = {
+    id: "",
     name: "",
     email: "",
     username: "",
@@ -17,19 +19,22 @@ class SignInForm extends Component {
     this.setState({ [event.target.name]: !this.state[event.target.name] });
   };
 
-  handleCancelButton = () => {};
+  handleCancelButton = () => {
+    this.props.history.push("/");
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
+    const userId = "_" + Math.random().toString(36).substr(2, 9);
+    this.setState({ id: userId });
     try {
       const response = await axios.post(
-        "https://ih-crud-api.herokuapp.com/characters",
+        "https://ironrest.herokuapp.com/flowFinanceWDFTSP",
         this.state
       );
 
       console.log(response);
-      this.props.history.push("/");
+      this.props.history.push(`/${this.state.id}`);
     } catch (err) {
       console.error(err);
     }
@@ -39,6 +44,7 @@ class SignInForm extends Component {
     return (
       <div className="container columns is-mobile">
         <form className="column is-half is-offset-one-quarter">
+          {/* Name */}
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -46,86 +52,125 @@ class SignInForm extends Component {
                 name="name"
                 className="input"
                 type="text"
-                placeholder="Text input"
+                placeholder="Your name"
+                value={this.state.name}
+                onChange={this.handleChange}
               />
             </div>
           </div>
+          {/* Name */}
+          {/* Username */}
           <div className="field">
             <label className="label">Username</label>
+
             <div className="control has-icons-left has-icons-right">
               <input
                 name="username"
-                className="input is-success"
+                className="input"
                 type="text"
-                placeholder="Text input"
-                value="bulma"
+                placeholder="Choose your Username"
+                value={this.state.username}
+                onChange={this.handleChange}
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
-              <span className="icon is-small is-right">
+              {/* <span className="icon is-small is-right">
                 <i className="fas fa-check"></i>
-              </span>
+              </span> */}
             </div>
-            <p className="help is-success">This username is available</p>
+            {/* <p className="help is-success">
+              {this.state.validUsername
+                ? "This username is available"
+                : "This username is not available"}
+            </p> */}
           </div>
+          {/* Username */}
+          {/* E-mail */}
           <div className="field">
             <label className="label">Email</label>
             <div className="control has-icons-left has-icons-right">
               <input
                 name="email"
-                className="input is-danger"
+                className="input"
                 type="email"
-                placeholder="Email input"
-                value="hello@"
+                placeholder="Your e-mail"
+                value={this.state.email}
+                onChange={this.handleChange}
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-envelope"></i>
               </span>
-              <span className="icon is-small is-right">
+              {/* <span className="icon is-small is-right">
                 <i className="fas fa-exclamation-triangle"></i>
-              </span>
+              </span> */}
             </div>
-            <p className="help is-danger">This password is too short</p>
+            {/* <p className="help is-danger">
+              {this.state.validEmail ? "" : "This email is invalid"}
+            </p> */}
           </div>
+          {/* E-mail */}
+          {/* Password */}
           <div className="field">
             <label className="label">Password</label>
             <div className="control has-icons-left has-icons-right">
               <input
                 name="password"
-                className="input is-danger"
+                className="input"
                 type="password"
                 placeholder="password input"
-                value="hello@"
+                value={this.state.password}
+                onChange={this.handleChange}
               />
               <span className="icon is-small is-left">
-                <i className="fas fa-envelope"></i>
+                <i className="fas fa-lock"></i>
               </span>
-              <span className="icon is-small is-right">
+              {/* <span className="icon is-small is-right">
                 <i className="fas fa-exclamation-triangle"></i>
-              </span>
+              </span> */}
             </div>
-            <p className="help is-danger">This email is invalid</p>
+            {/* <p className="help is-danger">
+              {this.state.password.length < 5
+                ? "This password is too short"
+                : "Valid password"}
+            </p> */}
           </div>
+          {/* Password */}
+          {/* Terms and Conditions */}
           <div className="field">
             <div className="control">
               <label className="checkbox">
-                <input type="checkbox" name="termsAgreement" />I agree to the{" "}
-                <a href="#">terms and conditions</a>
+                <input
+                  onchange={this.handleChangeCheckbox}
+                  type="checkbox"
+                  name="termsAgreement"
+                />{" "}
+                I agree to the <a href="#">terms and conditions</a>
               </label>
             </div>
           </div>
-
+          {/* Terms and Conditions */}
+          {/* Buttons */}
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-link is-light">Cancel</button>
+              <button
+                onClick={this.handleCancelButton}
+                className="button is-link is-light"
+              >
+                Cancel
+              </button>
             </div>
             <div className="control">
-              <button className="button is-link" type="submit">
+              <button
+                onClick={this.handleSubmit}
+                className="button is-link"
+                type="submit"
+              >
                 Submit
               </button>
             </div>
           </div>
+          {/* Buttons */}
         </form>
       </div>
     );
