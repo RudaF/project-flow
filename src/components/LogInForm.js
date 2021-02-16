@@ -25,12 +25,11 @@ class LogInForm extends Component {
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP?email=${this.state.username}`
       );
 
-      console.log(response);
-      if (
-        this.props.password === responseUsername.data.password ||
-        this.props.password === responseEmail.data.password
-      ) {
-        this.props.history.push(`/${response.data.id}/`);
+      console.log(responseUsername, responseEmail);
+      if (this.props.password === responseUsername.data.password) {
+        this.props.history.push(`/${responseUsername.data.id}/`);
+      } else if (this.props.password === responseEmail.data.password) {
+        this.props.history.push(`/${responseEmail.data.id}/`);
       } else {
         window.alert("Wrong username or password!");
       }

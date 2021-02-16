@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class SignInForm extends Component {
+class SignUpForm extends Component {
   state = {
     id: "",
     name: "",
@@ -177,4 +177,4 @@ class SignInForm extends Component {
   }
 }
 
-export default SignInForm;
+export default SignUpForm;
