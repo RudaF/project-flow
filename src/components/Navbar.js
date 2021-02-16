@@ -13,7 +13,7 @@ function Navbar() {
               </Link>
             </p>
             <p className="control">
-              <Link to="/signin" className="button is-primary">
+              <Link to="/signup" className="button is-primary">
                 <span>Signup</span>
               </Link>
             </p>
