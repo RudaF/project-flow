@@ -1,8 +1,9 @@
-import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+import SigninForm from "./components/SignInForm";
+
 function App() {
-  return <div></div>;
+  return <SigninForm />;
 }
 
 export default App;
