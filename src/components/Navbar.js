@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="navbar is-light">
+        <div className="navbar-menu">
+                <div className="navbar-start">
+                    <a className="navbar-item">Home</a>
+                </div>
+        </div>
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="field is-grouped">
