@@ -31,7 +31,7 @@ class LogInForm extends Component {
       const userbyEmail = responseEmail.data.filter(
         (databaseUser) => databaseUser.email === this.state.username
       );
-      console.log(userbyEmail);
+
       if (userbyName.length > 0) {
         this.props.handleLogIn(true);
         history.push(
@@ -40,7 +40,6 @@ class LogInForm extends Component {
           }/`
         );
       } else if (userbyEmail.length > 0) {
-        console.log("oi e-mail");
         this.props.handleLogIn(true);
         history.push(
           `/${

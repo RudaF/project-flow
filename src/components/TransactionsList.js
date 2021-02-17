@@ -53,7 +53,7 @@ class TransactionsList extends Component {
         newDates.push(newRange[i].date);
         newValues.push(newRange[i].amount);
       }
-      console.log(newDates, newValues);
+
       await this.setState({ financeValues: newValues, financeDates: newDates });
       this.state.chart.destroy();
       this.renderGraph();
@@ -61,7 +61,6 @@ class TransactionsList extends Component {
   };
 
   renderGraph = () => {
-    console.log(this.state.financeDates, this.state.financeValues);
     let ctx = document.getElementById("myChart");
     let myChart = new Chart(ctx, {
       type: "bar",
@@ -71,8 +70,7 @@ class TransactionsList extends Component {
           {
             label: "Transactions in the period",
             data: this.state.financeValues,
-            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-            borderColor: ["rgba(255, 99, 132, 1)"],
+            backgroundColor: "#5EBA7D",
             borderWidth: 1,
           },
         ],
@@ -96,20 +94,28 @@ class TransactionsList extends Component {
     return (
       <div className="container">
         <div className="container">
-          <input
-            name="startDate"
-            onChange={this.handleChange}
-            className="button is-info is-light m-5"
-            type="date"
-            value={this.state.startDate}
-          ></input>
-          <input
-            name="endDate"
-            onChange={this.handleChange}
-            className="button is-info is-light m-5"
-            type="date"
-            value={this.state.endDate}
-          ></input>
+          <div className="columns m-5">
+            <div className="column">
+              <label className="label">From:</label>
+              <input
+                name="startDate"
+                onChange={this.handleChange}
+                className="button is-info is-light"
+                type="date"
+                value={this.state.startDate}
+              ></input>
+            </div>
+            <div className="column">
+              <label className="label">To:</label>
+              <input
+                name="endDate"
+                onChange={this.handleChange}
+                className="button is-info is-light"
+                type="date"
+                value={this.state.endDate}
+              ></input>
+            </div>
+          </div>
         </div>
         <canvas id="myChart" style={{ width: "300px" }}></canvas>
         <table className="table table-hover table-sm m-5 caption-top table-responsive">
