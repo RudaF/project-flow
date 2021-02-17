@@ -22,7 +22,7 @@ class SignUpForm extends Component {
   };
 
   handleCancelButton = () => {
-    this.props.history.push("/");
+    history.push(`/${this.props.match.params.id}`);
   };
 
   handleSubmit = async (event) => {
@@ -45,7 +45,10 @@ class SignUpForm extends Component {
   render() {
     return (
       <div className="container columns is-mobile mt-6">
-        <form className="column is-half is-offset-one-quarter">
+        <form
+          className="column is-half is-offset-one-quarter"
+          onSubmit={this.handleSubmit}
+        >
           {/* Name */}
           <div className="field">
             <label className="label">Name</label>
@@ -155,20 +158,16 @@ class SignUpForm extends Component {
           {/* Buttons */}
           <div className="field is-grouped">
             <div className="control">
+              <button className="button is-link" type="submit">
+                Submit
+              </button>
+            </div>
+            <div className="control">
               <button
                 onClick={this.handleCancelButton}
                 className="button is-link is-light"
               >
                 Cancel
-              </button>
-            </div>
-            <div className="control">
-              <button
-                onClick={this.handleSubmit}
-                className="button is-link"
-                type="submit"
-              >
-                Submit
               </button>
             </div>
           </div>

@@ -1,34 +1,38 @@
 import React, { Component } from "react";
 import axios from "axios";
+import history from "../history";
 
 class AddTransactionForm extends Component {
   state = {
     description: "",
     category: "",
-    value: "",
+    amount: "",
     date: "",
   };
 
-  handleChange(event) {
-    this.setState({ [event.currentTarget.name]: event.currentTarget.value });
-  }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-  handleCancelButton() {
-    this.props.history.push("/");
-  }
+  handleCancelButton = () => {
+    history.push(`/${this.props.match.params.id}`);
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const userResponse = await axios.get(
-        `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${this.props.match.params.id}`
+        `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
-      //   const response = await axios.post(
-      //     `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${this.props.match.params.id}`,
-      //     this.state
-      //   );
-
       console.log(userResponse);
+      const financeData = [...userResponse.data.financeData, this.state];
+      console.log(financeData);
+      console.log({ ...userResponse.data, financeData });
+      const userUpdateResponse = await axios.put(
+        `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${userResponse.data._id}`,
+        { ...userResponse.data[0], financeData }
+      );
+      console.log(userUpdateResponse);
     } catch (err) {
       console.error(err);
     }
@@ -36,86 +40,92 @@ class AddTransactionForm extends Component {
 
   render() {
     return (
-      <form>
-        <div clasName="field">
-          <label clasName="label">Description</label>
-          <div className="control">
-            <input
-              onChange={this.handleChange}
-              className="input"
-              type="text"
-              placeholder="e.g rent"
-              name="description"
-              value={this.state.description}
-            />
+      <div className="container columns is-mobile mt-6">
+        <form
+          className="column is-half is-offset-one-quarter"
+          onSubmit={this.handleSubmit}
+        >
+          <div className="field m-2">
+            <label className="label">Description</label>
+            <div className="control">
+              <input
+                onChange={this.handleChange}
+                className="input"
+                type="text"
+                placeholder="e.g rent"
+                name="description"
+                value={this.state.description}
+              />
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <label className="label">category</label>
-          <div className="control">
-            <input
-              onChange={this.handleChange}
-              className="input"
-              type="text"
-              placeholder="e.g home or food, etc ..."
-              name="category"
-              value={this.state.category}
-            />
+          <div className="field m-2">
+            <label className="label">category</label>
+            <div className="control">
+              <input
+                onChange={this.handleChange}
+                className="input"
+                type="text"
+                placeholder="e.g home or food, etc ..."
+                name="category"
+                value={this.state.category}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="field has-addons">
-          <p className="control">
-            <span className="select">
-              <select>
-                <option>$</option>
-                <option>R$</option>
+          <div className="field has-addons m-2">
+            <p className="control">
+              <span className="select">
+                <select>
+                  <option>$</option>
+                  <option>R$</option>
+                </select>
+              </span>
+            </p>
+            <p className="control">
+              <input
+                onChange={this.handleChange}
+                className="input"
+                type="number"
+                placeholder="Amount of money"
+                name="amount"
+                value={this.state.amount}
+              />
+            </p>
+          </div>
+
+          <div className="control m-2">
+            <div className="select">
+              <select onChange={this.handleChange}>
+                <option>Spent</option>
+                <option>Recipe</option>
               </select>
-            </span>
-          </p>
-          <p className="control">
+            </div>
+          </div>
+          <div className="control m-2">
             <input
               onChange={this.handleChange}
-              className="input"
-              type="text"
-              placeholder="Amount of money"
-              name="value"
-              value={this.state.value}
-            />
-          </p>
-        </div>
-
-        <div className="control">
-          <div className="select">
-            <select onChange={this.handleChange}>
-              <option>Spent</option>
-              <option>Recipe</option>
-            </select>
+              className="input is-primary"
+              type="date"
+              name="date"
+              value={this.state.date}
+            ></input>
           </div>
-        </div>
-        <div>
-          <input
-            onChange={this.handleChange}
-            className="input is-primary"
-            type="date"
-            name="date"
-            value={this.state.date}
-          ></input>
-        </div>
 
-        <div className="field is-grouped">
-          <p className="control">
-            <a onClick={this.handleCancelButton} className="button is-primary">
-              Cancel
-            </a>
-          </p>
-          <p className="control">
-            <a onClick={this.handleSubmit} className="button is-light">
-              Submit
-            </a>
-          </p>
-        </div>
-      </form>
+          <div className="field is-grouped">
+            <p className="control m-2">
+              <button className="button is-light">Submit</button>
+            </p>
+            <p className="control m-2">
+              <button
+                onClick={this.handleCancelButton}
+                className="button is-primary"
+              >
+                Cancel
+              </button>
+            </p>
+          </div>
+        </form>
+      </div>
     );
   }
 }
