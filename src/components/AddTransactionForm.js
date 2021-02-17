@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import history from "../history";
 
 class AddTransactionForm extends Component {
   state = {
@@ -14,7 +15,7 @@ class AddTransactionForm extends Component {
   };
 
   handleCancelButton = () => {
-    this.props.history.push("/");
+    history.push(`/${this.props.match.params.id}`);
   };
 
   handleSubmit = async (event) => {
@@ -40,7 +41,10 @@ class AddTransactionForm extends Component {
   render() {
     return (
       <div className="container columns is-mobile mt-6">
-        <form className="column is-half is-offset-one-quarter">
+        <form
+          className="column is-half is-offset-one-quarter"
+          onSubmit={this.handleSubmit}
+        >
           <div className="field m-2">
             <label className="label">Description</label>
             <div className="control">
@@ -109,16 +113,14 @@ class AddTransactionForm extends Component {
 
           <div className="field is-grouped">
             <p className="control m-2">
+              <button className="button is-light">Submit</button>
+            </p>
+            <p className="control m-2">
               <button
                 onClick={this.handleCancelButton}
                 className="button is-primary"
               >
                 Cancel
-              </button>
-            </p>
-            <p className="control m-2">
-              <button onClick={this.handleSubmit} className="button is-light">
-                Submit
               </button>
             </p>
           </div>

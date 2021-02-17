@@ -25,7 +25,7 @@ class NavbarAl extends React.Component {
               </p>
               <p className="control">
                 <Link
-                  to={`/${this.props.match.params.id}/addtransaction/transactionlist`}
+                  to={`/${this.props.match.params.id}/transactionlist`}
                   className="button is-primary"
                 >
                   <span>Transactions</span>
