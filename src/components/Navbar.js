@@ -12,7 +12,19 @@ function Navbar(props) {
       <div className="navbar-end">
         <div className="navbar-item">
           {props.isLogedIn ? (
-            ""
+            <div className="field is-grouped">
+              <p className="control">
+                <Link to="/ed transaction" className="bd-tw-button button is-info">
+                  <span>Ed Transaction</span>
+                </Link>
+              </p>
+              <p className="control">
+                <Link to="/transaction list" className="button is-primary">
+                  <span>Transaction List</span>
+                </Link>
+              </p>
+            </div> 
+          
           ) : (
             <div className="field is-grouped">
               <p className="control">
