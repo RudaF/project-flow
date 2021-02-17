@@ -29,12 +29,12 @@ class SignUpForm extends Component {
     const userId = "_" + Math.random().toString(36).substr(2, 9);
     this.setState({ id: userId });
     try {
+      console.log(this.state);
       const response = await axios.post(
         "https://ironrest.herokuapp.com/flowFinanceWDFTSP",
         this.state
       );
-
-      console.log(response);
+      this.props.handleLogIn(true);
       this.props.history.push(`/${this.state.id}`);
     } catch (err) {
       console.error(err);
@@ -43,7 +43,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div className="container columns is-mobile">
+      <div className="container columns is-mobile mt-6">
         <form className="column is-half is-offset-one-quarter">
           {/* Name */}
           <div className="field">
@@ -142,7 +142,7 @@ class SignUpForm extends Component {
             <div className="control">
               <label className="checkbox">
                 <input
-                  onchange={this.handleChangeCheckbox}
+                  onChange={this.handleChangeCheckbox}
                   type="checkbox"
                   name="termsAgreement"
                 />{" "}
