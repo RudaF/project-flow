@@ -1,7 +1,8 @@
 import { Router, Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 
-import Navbar from "./components/Navbar";
+import NavbarB4 from "./components/NavbarB4";
+import NavbarAl from "./components/NavbarAl";
 import SignUpForm from "./components/SignUpForm";
 import LogInForm from "./components/LogInForm";
 import HomePage from "./components/HomePage";
@@ -21,11 +22,9 @@ class App extends Component {
     return (
       <Router history={history}>
         {this.state.isLogedIn ? (
-          <Route path="/:id">
-            <Navbar isLogedIn={this.state.isLogedIn} />
-          </Route>
+          <Route path="/:id" component={NavbarAl} />
         ) : (
-          <Route path="/" component={Navbar} />
+          <Route path="/" component={NavbarB4} />
         )}
         <Switch>
           {this.state.isLogedIn ? (
