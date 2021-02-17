@@ -25,15 +25,30 @@ class LogInForm extends Component {
       const responseEmail = await axios.get(
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP?email=${this.state.username}`
       );
-
-      console.log(history);
-      if (this.state.password === responseUsername.data[0].password) {
+      const userbyName = responseUsername.data.filter(
+        (databaseUser) => databaseUser.email === this.state.username
+      );
+      const userbyEmail = responseEmail.data.filter(
+        (databaseUser) => databaseUser.email === this.state.username
+      );
+      console.log(userbyEmail);
+      if (userbyName.length > 0) {
         this.props.handleLogIn(true);
-        history.push(`/${responseUsername.data[0].id}/`);
-      } else if (this.state.password === responseEmail.data.password) {
+        history.push(
+          `/${
+            userbyName[0].id.length > 0 ? userbyName[0].id : userbyName[0]._id
+          }/`
+        );
+      } else if (userbyEmail.length > 0) {
         console.log("oi e-mail");
         this.props.handleLogIn(true);
-        history.push(`/${responseEmail.data[0].id}/`);
+        history.push(
+          `/${
+            userbyEmail[0].id.length > 0
+              ? userbyEmail[0].id
+              : userbyEmail[0]._id
+          }/`
+        );
       } else {
         window.alert("Wrong username or password!");
       }
