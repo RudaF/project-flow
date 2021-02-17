@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 
 import Navbar from "./components/Navbar";
@@ -6,6 +6,7 @@ import SignUpForm from "./components/SignUpForm";
 import LogInForm from "./components/LogInForm";
 import HomePage from "./components/HomePage";
 import AddTransactionForm from "./components/AddTransactionForm";
+import history from "./history";
 
 class App extends Component {
   state = {
@@ -18,7 +19,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         {this.state.isLogedIn ? (
           <Route path="/:id">
             <Navbar isLogedIn={this.state.isLogedIn} />
@@ -55,7 +56,7 @@ class App extends Component {
             component={AddTransactionForm}
           />
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

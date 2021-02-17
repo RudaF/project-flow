@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import history from "../history";
 
 class LogInForm extends Component {
   state = {
@@ -25,14 +26,14 @@ class LogInForm extends Component {
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP?email=${this.state.username}`
       );
 
-      console.log(this.props.history);
+      console.log(history);
       if (this.state.password === responseUsername.data[0].password) {
-        this.props.history.push(`/${responseUsername.data[0].id}/`);
-        this.state.handleLogIn(true);
+        this.props.handleLogIn(true);
+        history.push(`/${responseUsername.data[0].id}/`);
       } else if (this.state.password === responseEmail.data.password) {
         console.log("oi e-mail");
-        this.props.history.push(`/${responseEmail.data.id}/`);
-        this.state.handleLogIn(true);
+        this.props.handleLogIn(true);
+        history.push(`/${responseEmail.data[0].id}/`);
       } else {
         window.alert("Wrong username or password!");
       }

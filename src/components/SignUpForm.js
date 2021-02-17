@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import history from "../history";
 
 class SignUpForm extends Component {
   state = {
@@ -35,7 +36,7 @@ class SignUpForm extends Component {
         this.state
       );
       this.props.handleLogIn(true);
-      this.props.history.push(`/${this.state.id}`);
+      history.push(`/${this.state.id}`);
     } catch (err) {
       console.error(err);
     }
