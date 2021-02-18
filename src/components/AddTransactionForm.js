@@ -24,7 +24,12 @@ class AddTransactionForm extends Component {
       const userResponse = await axios.get(
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
-      console.log(userResponse);
+      const amount =
+        this.state.category === "expense"
+          ? this.state.amount * -1
+          : this.state.amount;
+
+      this.setState({ amount });
       const financeData = [...userResponse.data.financeData, this.state];
       console.log(financeData);
       console.log({ ...userResponse.data, financeData });
@@ -59,7 +64,7 @@ class AddTransactionForm extends Component {
             </div>
           </div>
           <div className="field m-2">
-            <label className="label">category</label>
+            <label className="label">Category</label>
             <div className="control">
               <input
                 onChange={this.handleChange}
@@ -74,14 +79,6 @@ class AddTransactionForm extends Component {
 
           <div className="field has-addons m-2">
             <p className="control">
-              <span className="select">
-                <select>
-                  <option>$</option>
-                  <option>R$</option>
-                </select>
-              </span>
-            </p>
-            <p className="control">
               <input
                 onChange={this.handleChange}
                 className="input"
@@ -95,9 +92,9 @@ class AddTransactionForm extends Component {
 
           <div className="control m-2">
             <div className="select">
-              <select onChange={this.handleChange}>
-                <option>Spent</option>
-                <option>Recipe</option>
+              <select name="category" onChange={this.handleChange}>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
               </select>
             </div>
           </div>
