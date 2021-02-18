@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import flow from "./images/logo1-removebg-preview.png";
+import flow from "./images/logoh.png";
 
 class NavbarAl extends React.Component {
   render() {
