@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import flow from "./images/logo1.png";
+import flow from "./images/logo1-removebg-preview.png";
 
 function NavbarB4(props) {
   return (
@@ -19,12 +19,12 @@ function NavbarB4(props) {
         <div className="navbar-item">
           <div className="field is-grouped">
             <p className="control">
-              <Link to="/login" className="bd-tw-button button is-info">
+              <Link to="/login" className="bd-tw-button button is-dark">
                 <span>Login</span>
               </Link>
             </p>
             <p className="control">
-              <Link to="/signup" className="button is-primary">
+              <Link to="/signup" className="button is-success">
                 <span>Signup</span>
               </Link>
             </p>
