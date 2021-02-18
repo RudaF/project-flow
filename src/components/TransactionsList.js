@@ -92,8 +92,8 @@ class TransactionsList extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="container">
+      <div className="columns">
+        <div className="container column">
           <div className="columns m-5">
             <div className="column">
               <label className="label">From:</label>
@@ -116,37 +116,41 @@ class TransactionsList extends Component {
               ></input>
             </div>
           </div>
+          <div className="container">
+            <canvas id="myChart" style={{ width: "200px" }}></canvas>
+          </div>
         </div>
-        <canvas id="myChart" style={{ width: "300px" }}></canvas>
-        <table className="table table-hover table-sm m-5 caption-top table-responsive">
-          <caption>List of added transactions</caption>
-          <table className="table align-left">
-            <thead className="shadow-sm p-3 mb-5 bg-body rounded">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Description</th>
-                <th scope="col">Amount (R$)</th>
-              </tr>
-            </thead>
-            {this.state.transactionList.map((transaction) => (
-              <tbody
-                className="shadow-sm p-3 mb-5 bg-body rounded"
-                key={transaction.name}
-              >
+
+        <div className="container column">
+          <table className="table table-hover table-sm m-5 caption-top table-responsive">
+            <caption>List of added transactions</caption>
+            <table className="table align-left">
+              <thead className="shadow-sm p-3 mb-5 bg-body rounded">
                 <tr>
-                  <th scope="col">
-                    <p>{transaction.date}</p>
-                  </th>
-                  <th scope="col">
-                    <p>{transaction.description}</p>
-                  </th>
-                  <th scope="col">
-                    <p>{transaction.amount}</p>
-                  </th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Amount (R$)</th>
                 </tr>
-              </tbody>
-            ))}
-            {/* <tfood className="shadow-sm p-3 mb-5 bg-body rounded">
+              </thead>
+              {this.state.transactionList.map((transaction) => (
+                <tbody
+                  className="shadow-sm p-3 mb-5 bg-body rounded"
+                  key={transaction.name}
+                >
+                  <tr>
+                    <th scope="col">
+                      <p>{transaction.date}</p>
+                    </th>
+                    <th scope="col">
+                      <p>{transaction.description}</p>
+                    </th>
+                    <th scope="col">
+                      <p>{transaction.amount}</p>
+                    </th>
+                  </tr>
+                </tbody>
+              ))}
+              {/* <tfood className="shadow-sm p-3 mb-5 bg-body rounded">
               <tr>
                 <th>Total:</th>
                 <th></th>
@@ -154,8 +158,9 @@ class TransactionsList extends Component {
                 <th>{this.state.totalTransactions}</th>
               </tr>
             </tfood> */}
+            </table>
           </table>
-        </table>
+        </div>
       </div>
     );
   }
