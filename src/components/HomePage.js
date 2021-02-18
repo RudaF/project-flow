@@ -1,15 +1,35 @@
 import React from "react";
+import cel from "./images/celular.png";
 
 function HomePage() {
   return (
-    <div>
-      <figure className="image is-2by1">
-        <img
-          src="https://images.unsplash.com/photo-1554252116-ee59370d1f66?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80"
-          alt="image of a folder, on top of a calendar and on top of the calendar a smartphone with the calculator open and a pen beside it"
-        />
-      </figure>
+    <div className="tile is-ancestor m-5">
+      <div className="tile is-4 is-vertical is-parent">
+        <div className="tile is-child box">
+          <p className="title">Online financial control system</p>
+          <p>Complete, easy to use and free.</p>
+        </div>
+        <div className="tile is-child box">
+          <p className="title">Time is money</p>
+          <p>In Flow you control your money in seconds and don't waste time. Keep everything under control and enjoy your time with what really matters to you!</p>
+        </div>
+      </div>
+      
+      <div className="tile is-parent">
+        <div className="tile is-child">
+          
+        </div>
+      </div>
+
+      <div className="tile is-parent">
+        <div className="tile is-child">
+          <figure className="has-ratio" width="640" height="360">
+            <img src={cel} />
+          </figure>
+        </div>
+      </div>
     </div>
+
   );
 }
 

@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import flow from "./images/logo1-removebg-preview.png";
 
 class NavbarAl extends React.Component {
   render() {
     return (
       <nav className="navbar is-light">
+          <div className="navbar-brand">
+            <img src={flow} width="112" height="28" />
+          </div>
         <div className="navbar-menu">
           <div className="navbar-start">
             <Link to={`/${this.props.match.params.id}`} className="navbar-item">
@@ -18,7 +22,7 @@ class NavbarAl extends React.Component {
               <p className="control">
                 <Link
                   to={`/${this.props.match.params.id}/addtransaction`}
-                  className="bd-tw-button button is-info"
+                  className="bd-tw-button button is-dark"
                 >
                   <span>Add Transaction</span>
                 </Link>
@@ -26,7 +30,7 @@ class NavbarAl extends React.Component {
               <p className="control">
                 <Link
                   to={`/${this.props.match.params.id}/transactionlist`}
-                  className="button is-primary"
+                  className="button is-success"
                 >
                   <span>Transactions</span>
                 </Link>
