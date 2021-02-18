@@ -29,8 +29,6 @@ class App extends Component {
           <Route path="/" component={NavbarB4} />
         )}
         <Switch>
-          <Route exact path="/InvestimentData" component={InvestimentData} />
-
           {this.state.isLogedIn ? (
             <Route exact path="/:id" component={HomePage} />
           ) : (
@@ -58,6 +56,7 @@ class App extends Component {
             path="/:id/addtransaction"
             component={AddTransactionForm}
           />
+          <Route exact path="/:id/watchlist" component={InvestimentData} />
         </Switch>
       </Router>
     );

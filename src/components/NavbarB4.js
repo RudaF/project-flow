@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import flow from "./images/logoh.png";
+import flow from "./images/logo1-removebg-preview.png";
 
-function NavbarB4(props) {
+function NavbarB4() {
   return (
     <nav className="navbar is-light">
-      <div className="navbar-brand">
-          <img src={flow} width="112" height="28" />
-      </div>
       <div className="navbar-menu">
         <div className="navbar-start">
-          <Link to="/" className="navbar-item">
-            Home
+          <Link to="/">
+            <img src={flow} width="120px" alt="Flow logo" />
           </Link>
         </div>
       </div>
