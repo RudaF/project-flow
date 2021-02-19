@@ -23,7 +23,7 @@ class TransactionsList extends Component {
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
       userResponse.data.financeData.sort((a, b) => {
-        return a.date - b.date;
+        return new Date(b.date) - new Date(a.date);
       });
       const financeValues = userResponse.data.financeData.map((x) => x.amount);
       const financeDates = userResponse.data.financeData.map((x) => x.date);
