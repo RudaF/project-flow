@@ -5,7 +5,7 @@ import flow from "./images/logo1-removebg-preview.png";
 function Footer() {
   return (
     <footer
-      className="footer fixed-bottom"
+      className="footer fixed-bottom mt-5"
       style={{
         backgroundColor: "#2F2F2F",
         position: "absolute",
