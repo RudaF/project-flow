@@ -5,6 +5,7 @@ class InvestimentData extends React.Component {
   state = {
     searchInput: "",
     marketData: [],
+    marketDataDisplayed: [],
   };
 
   componentDidMount = async () => {
@@ -21,18 +22,44 @@ class InvestimentData extends React.Component {
       const response = await axios.request(options);
       this.setState({
         marketData: [...response.data.finance.result[0].portfolios],
+        marketDataDisplayed: [...response.data.finance.result[0].portfolios],
       });
-      console.log(this.state.marketData);
-
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.searchInput !== this.state.searchInput) {
+      const filtered = this.state.marketData.filter(
+        (watchlist) =>
+          watchlist.name.includes(this.state.searchInput) ||
+          watchlist.description.includes(this.state.searchInput)
+      );
+      this.setState({ marketDataDisplayed: filtered });
+    }
+  };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     return (
       <div>
+        <div className="field m-2">
+          <label className="label">Search for a Market Watchlist</label>
+          <div className="control">
+            <input
+              onChange={this.handleChange}
+              className="input"
+              type="text"
+              placeholder="e.g rent"
+              name="searchInput"
+              value={this.state.searchInput}
+            />
+          </div>
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -42,9 +69,15 @@ class InvestimentData extends React.Component {
           </thead>
 
           <tbody>
-            {this.state.marketData.map((item) => (
+            {this.state.marketDataDisplayed.map((item) => (
               <tr key={item.pfId}>
-                <th>{item.name}</th>
+                <th>
+                  <a
+                    href={`https://finance.yahoo.com/u/yahoo-finance/watchlists/${item.pfI}?.tsrc=fin-srch`}
+                  >
+                    {item.name}
+                  </a>
+                </th>
                 <th dangerouslySetInnerHTML={{ __html: item.description }}></th>
               </tr>
             ))}

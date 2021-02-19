@@ -5,7 +5,7 @@ import history from "../history";
 class AddTransactionForm extends Component {
   state = {
     description: "",
-    category: "expense",
+    category: "income",
     amount: 0,
     date: "",
   };
@@ -24,17 +24,16 @@ class AddTransactionForm extends Component {
       const userResponse = await axios.get(
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
-      console.log(this.state);
+
       const amount =
         this.state.category === "expense"
           ? Number(this.state.amount) * -1
           : this.state.amount;
-      console.log("amount:", amount);
+
       this.setState({ amount });
-      console.log("state amount:", this.state.amount);
+
       const financeData = [...userResponse.data.financeData, this.state];
-      // console.log(financeData);
-      // console.log({ ...userResponse.data, financeData });
+
       const userUpdateResponse = await axios.put(
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${userResponse.data._id}`,
         { ...userResponse.data[0], financeData }
@@ -47,7 +46,6 @@ class AddTransactionForm extends Component {
   };
 
   render() {
-    console.log("in render:", this.state.category);
     return (
       <div className="container columns is-mobile mt-6">
         <form

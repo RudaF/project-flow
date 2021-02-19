@@ -27,7 +27,7 @@ class TransactionsList extends Component {
       const financeData = financeDates.map((date, i) => {
         return { date: date, amount: financeValues[i] };
       });
-      console.log(userResponse);
+
       this.setState({
         transactionList: [...userResponse.data.financeData],
         financeValues,
