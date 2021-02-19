@@ -146,7 +146,15 @@ class TransactionsList extends Component {
                       <p>{transaction.description}</p>
                     </th>
                     <th scope="col">
-                      <p>{transaction.amount}</p>
+                      <p
+                        className={
+                          transaction.amount < 0
+                            ? "has-text-danger"
+                            : "has-text-success"
+                        }
+                      >
+                        {transaction.amount}
+                      </p>
                     </th>
                   </tr>
                 </tbody>

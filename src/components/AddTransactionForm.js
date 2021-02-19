@@ -5,8 +5,8 @@ import history from "../history";
 class AddTransactionForm extends Component {
   state = {
     description: "",
-    category: "",
-    amount: "",
+    category: "expense",
+    amount: 0,
     date: "",
   };
 
@@ -24,15 +24,17 @@ class AddTransactionForm extends Component {
       const userResponse = await axios.get(
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
+      console.log(this.state);
       const amount =
         this.state.category === "expense"
-          ? this.state.amount * -1
+          ? Number(this.state.amount) * -1
           : this.state.amount;
-
+      console.log("amount:", amount);
       this.setState({ amount });
+      console.log("state amount:", this.state.amount);
       const financeData = [...userResponse.data.financeData, this.state];
-      console.log(financeData);
-      console.log({ ...userResponse.data, financeData });
+      // console.log(financeData);
+      // console.log({ ...userResponse.data, financeData });
       const userUpdateResponse = await axios.put(
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${userResponse.data._id}`,
         { ...userResponse.data[0], financeData }
@@ -45,11 +47,12 @@ class AddTransactionForm extends Component {
   };
 
   render() {
+    console.log("in render:", this.state.category);
     return (
       <div className="container columns is-mobile mt-6">
         <form
           className="column is-half is-offset-one-quarter"
-          onSubmit={this.handleSubmit}
+          onSubmit={this.handleSubmit.bind(this)}
         >
           <div className="field m-2">
             <label className="label">Description</label>
@@ -84,7 +87,11 @@ class AddTransactionForm extends Component {
           <div className="control m-2">
             <label className="label">Is it an Income or Expense?</label>
             <div className="select">
-              <select name="category" onChange={this.handleChange}>
+              <select
+                name="category"
+                onChange={this.handleChange}
+                value={this.state.category}
+              >
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>
               </select>
