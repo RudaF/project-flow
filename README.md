@@ -1,9 +1,11 @@
 # The Cursed King
 
+![](./public/logo192.png)
+
 ## About the App
 
 Flow is a financial organizer web application.
-Is is an app built in HTML, CSS and JavaScript as a part of a Ironhack project.
+Is is an app built in React using public API's as a part of a Ironhack project.
 
 ## So what is it made for?
 
