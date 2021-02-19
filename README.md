@@ -1,4 +1,4 @@
-# The Cursed King
+# Flow - Finance and Life Organizer
 
 ![](./public/logo192.png)
 
