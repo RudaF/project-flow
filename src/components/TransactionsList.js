@@ -22,6 +22,9 @@ class TransactionsList extends Component {
       const userResponse = await axios.get(
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
+      userResponse.data.financeData.sort((a, b) => {
+        return a.date - b.date;
+      });
       const financeValues = userResponse.data.financeData.map((x) => x.amount);
       const financeDates = userResponse.data.financeData.map((x) => x.date);
       const financeData = financeDates.map((date, i) => {
