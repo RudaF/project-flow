@@ -7,6 +7,7 @@ class TransactionsList extends Component {
     startDate: "",
     endDate: "",
     transactionList: [],
+    transactionListCopy: [],
     financeData: [],
     financeValues: [],
     financeDates: [],
@@ -24,7 +25,7 @@ class TransactionsList extends Component {
         `https://ironrest.herokuapp.com/findOne/flowFinanceWDFTSP?id=${this.props.match.params.id}`
       );
       userResponse.data.financeData.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(a.date) - new Date(b.date);
       });
       const financeValues = userResponse.data.financeData.map((x) => x.amount);
       const financeDates = userResponse.data.financeData.map((x) => x.date);
@@ -34,6 +35,7 @@ class TransactionsList extends Component {
 
       this.setState({
         transactionList: [...userResponse.data.financeData],
+        transactionListCopy: [...userResponse.data.financeData],
         financeValues,
         financeDates,
         financeData,
@@ -42,7 +44,7 @@ class TransactionsList extends Component {
     } catch (err) {}
   };
 
-  // o componentDidUpdate lida com o filtro de período dado pelo usuário
+  // o componentDidUpdate lida com o filtro de período dado pelo usuário aplicando no gráfico e na lista
   componentDidUpdate = async (prevProps, prevState) => {
     if (
       prevState.startDate !== this.state.startDate ||
@@ -53,6 +55,12 @@ class TransactionsList extends Component {
           element.date >= this.state.startDate &&
           element.date <= this.state.endDate
       );
+      const newFinancialDisplay = this.state.financeData.filter(
+        (element) =>
+          element.date >= this.state.startDate &&
+          element.date <= this.state.endDate
+      );
+
       const newDates = [];
       const newValues = [];
       for (let i = 0; i < newRange.length; i++) {
@@ -60,7 +68,12 @@ class TransactionsList extends Component {
         newValues.push(newRange[i].amount);
       }
 
-      await this.setState({ financeValues: newValues, financeDates: newDates });
+      // Descobrindo do pior jeito que o setState não é síncrono
+      await this.setState({
+        financeValues: newValues,
+        financeDates: newDates,
+        transactionListCopy: newFinancialDisplay,
+      });
       this.state.chart.destroy();
       this.renderGraph();
     }
@@ -142,7 +155,7 @@ class TransactionsList extends Component {
                   <th scope="col">Amount (R$)</th>
                 </tr>
               </thead>
-              {this.state.transactionList.map((transaction) => (
+              {this.state.transactionListCopy.map((transaction) => (
                 <tbody
                   className="shadow-sm p-3 mb-5 bg-body rounded"
                   key={transaction.name}
