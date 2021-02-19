@@ -1,6 +1,6 @@
 # Flow - Finance and Life Organizer
 
-![](./public/logo192.png)
+![](./public/flowMainLogo.png)
 
 ## About the App
 
