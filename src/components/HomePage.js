@@ -11,25 +11,26 @@ function HomePage() {
         </div>
         <div className="tile is-child box">
           <p className="title">Time is money</p>
-          <p>In Flow you control your money in seconds and don't waste time. Keep everything under control and enjoy your time with what really matters to you!</p>
+          <p>
+            In Flow you control your money in seconds and don't waste time. Keep
+            everything under control and enjoy your time with what really
+            matters to you!
+          </p>
         </div>
       </div>
-      
+
       <div className="tile is-parent">
-        <div className="tile is-child">
-          
-        </div>
+        <div className="tile is-child"></div>
       </div>
 
       <div className="tile is-parent">
         <div className="tile is-child">
           <figure className="has-ratio" width="640" height="360">
-            <img src={cel} />
+            <img src={cel} alt="cellphone displaying financial results" />
           </figure>
         </div>
       </div>
     </div>
-
   );
 }
 
