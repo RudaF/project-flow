@@ -8,6 +8,7 @@ class InvestimentData extends React.Component {
     marketDataDisplayed: [],
   };
 
+  // componentDidMount responsável por receber a tela e imprimir na página inicial
   componentDidMount = async () => {
     var options = {
       method: "GET",
@@ -29,6 +30,7 @@ class InvestimentData extends React.Component {
     }
   };
 
+  // componentDidUpdate responsável pelo filtro das watchlist na barra de pesquisa
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.searchInput !== this.state.searchInput) {
       const filtered = this.state.marketData.filter(

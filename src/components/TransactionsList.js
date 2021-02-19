@@ -17,6 +17,7 @@ class TransactionsList extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // ao carregar a página, o componentDidMount faz um get dos elementos adicionados pelo usuário na API IronRest
   componentDidMount = async () => {
     try {
       const userResponse = await axios.get(
@@ -41,6 +42,7 @@ class TransactionsList extends Component {
     } catch (err) {}
   };
 
+  // o componentDidUpdate lida com o filtro de período dado pelo usuário
   componentDidUpdate = async (prevProps, prevState) => {
     if (
       prevState.startDate !== this.state.startDate ||
@@ -64,6 +66,7 @@ class TransactionsList extends Component {
     }
   };
 
+  // renderização do gráfico usando Graph.js
   renderGraph = () => {
     let ctx = document.getElementById("myChart");
     let myChart = new Chart(ctx, {
@@ -99,6 +102,7 @@ class TransactionsList extends Component {
       <div className="columns">
         <div className="container column">
           <div className="columns m-5">
+            {/* Filtros e gráfico */}
             <div className="column">
               <label className="label">From:</label>
               <input
@@ -124,7 +128,9 @@ class TransactionsList extends Component {
             <canvas id="myChart" style={{ width: "200px" }}></canvas>
           </div>
         </div>
+        {/* Filtros e gráfico */}
 
+        {/* Lista de transações */}
         <div className="container column">
           <table className="table table-hover table-sm m-5 caption-top table-responsive">
             <caption>List of added transactions</caption>
@@ -162,17 +168,10 @@ class TransactionsList extends Component {
                   </tr>
                 </tbody>
               ))}
-              {/* <tfood className="shadow-sm p-3 mb-5 bg-body rounded">
-              <tr>
-                <th>Total:</th>
-                <th></th>
-                <th></th>
-                <th>{this.state.totalTransactions}</th>
-              </tr>
-            </tfood> */}
             </table>
           </table>
         </div>
+        {/* Lista de transações */}
       </div>
     );
   }

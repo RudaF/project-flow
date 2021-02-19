@@ -18,6 +18,7 @@ class AddTransactionForm extends Component {
     history.push(`/${this.props.match.params.id}`);
   };
 
+  // The submit button will update the user information on the IronRest API with the new transaction added
   handleSubmit = async (event) => {
     event.preventDefault();
     try {

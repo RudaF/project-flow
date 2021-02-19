@@ -13,6 +13,7 @@ import TransactionsList from "./components/TransactionsList";
 import InvestimentData from "./components/ InvestmentData";
 
 class App extends Component {
+  // The component needed a state to change the navbar when the user is logged-in
   state = {
     isLogedIn: false,
   };

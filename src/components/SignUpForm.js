@@ -25,6 +25,7 @@ class SignUpForm extends Component {
     history.push(`/${this.props.match.params.id}`);
   };
 
+  // ao criar o usuário e dar o submit, o usuário é criado na API IronRest
   handleSubmit = async (event) => {
     event.preventDefault();
     const userId = "_" + Math.random().toString(36).substr(2, 9);
@@ -79,15 +80,7 @@ class SignUpForm extends Component {
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
-              {/* <span className="icon is-small is-right">
-                <i className="fas fa-check"></i>
-              </span> */}
             </div>
-            {/* <p className="help is-success">
-              {this.state.validUsername
-                ? "This username is available"
-                : "This username is not available"}
-            </p> */}
           </div>
           {/* Username */}
           {/* E-mail */}
@@ -105,13 +98,7 @@ class SignUpForm extends Component {
               <span className="icon is-small is-left">
                 <i className="fas fa-envelope"></i>
               </span>
-              {/* <span className="icon is-small is-right">
-                <i className="fas fa-exclamation-triangle"></i>
-              </span> */}
             </div>
-            {/* <p className="help is-danger">
-              {this.state.validEmail ? "" : "This email is invalid"}
-            </p> */}
           </div>
           {/* E-mail */}
           {/* Password */}
@@ -129,15 +116,7 @@ class SignUpForm extends Component {
               <span className="icon is-small is-left">
                 <i className="fas fa-lock"></i>
               </span>
-              {/* <span className="icon is-small is-right">
-                <i className="fas fa-exclamation-triangle"></i>
-              </span> */}
             </div>
-            {/* <p className="help is-danger">
-              {this.state.password.length < 5
-                ? "This password is too short"
-                : "Valid password"}
-            </p> */}
           </div>
           {/* Password */}
           {/* Terms and Conditions */}

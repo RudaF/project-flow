@@ -16,6 +16,7 @@ class LogInForm extends Component {
     history.push(`/${this.props.match.params.id}`);
   };
 
+  // procura o usuário na API IronRest e verifica se a senha está correta
   handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -79,15 +80,7 @@ class LogInForm extends Component {
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
-              {/* <span className="icon is-small is-right">
-                  <i className="fas fa-check"></i>
-                </span> */}
             </div>
-            {/* <p className="help is-success">
-                {this.state.validUsername
-                  ? "This username is available"
-                  : "This username is not available"}
-              </p> */}
           </div>
           {/* Username */}
           {/* Password */}
@@ -105,15 +98,7 @@ class LogInForm extends Component {
               <span className="icon is-small is-left">
                 <i className="fas fa-lock"></i>
               </span>
-              {/* <span className="icon is-small is-right">
-                  <i className="fas fa-exclamation-triangle"></i>
-                </span> */}
             </div>
-            {/* <p className="help is-danger">
-                {this.state.password.length < 5
-                  ? "This password is too short"
-                  : "Valid password"}
-              </p> */}
           </div>
           {/* Password */}
 

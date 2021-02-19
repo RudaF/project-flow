@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import flow from "./images/flowMainLogo.png";
 
+// Navbar before (B4) Log-in
 function NavbarB4() {
   return (
     <nav className="navbar is-light">

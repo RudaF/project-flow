@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import flow from "./images/flowMainLogo.png";
 
+// Adicionei estilos no próprio js pelo tamanho e pela dificuldade das classes no arquivo .css externo
 const style = {
   backgroundColor: "#2F2F2F",
   color: "#ffff",
