@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import flow from "./images/logo1-removebg-preview.png";
+import flow from "./images/flowMainLogo.png";
 
 const style = {
   backgroundColor: "#2F2F2F",
@@ -25,10 +25,10 @@ function Footer() {
     <div style={phantom}>
       <div style={style} className="d-flex">
         <Link to="/" className="ml-5">
-          <img src={flow} width="300px" alt="Flow logo" />
+          <img className="mt-4" src={flow} width="300px" alt="Flow logo" />
         </Link>
         <div className="container">
-          <p className="mt-5">
+          <p className="mt-6">
             <strong style={{ color: "#48C78E" }}>Flow</strong> by{" "}
             <a href="https://www.linkedin.com/in/driele-de-aquino-nogueira-4b7b8b37/">
               Driele Nogueira

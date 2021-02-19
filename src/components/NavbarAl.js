@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import flow from "./images/logo1-removebg-preview.png";
+import flow from "./images/flowMainLogo.png";
 
 class NavbarAl extends React.Component {
   render() {
     return (
       <nav className="navbar is-light">
         <div className="navbar-menu">
-          <div className="navbar-start">
+          <div className="navbar-start ml-5">
             <Link to="/">
               <img src={flow} width="120px" alt="Flow logo" />
             </Link>
