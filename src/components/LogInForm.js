@@ -59,12 +59,6 @@ class LogInForm extends Component {
   render() {
     return (
       <div className="container columns is-mobile mt-6">
-        <script
-          src="https://apis.google.com/js/platform.js"
-          async
-          defer
-        ></script>
-
         <form
           className="column is-half is-offset-one-quarter"
           onSubmit={this.handleSubmit}
@@ -140,10 +134,7 @@ class LogInForm extends Component {
               </button>
             </div>
           </div>
-          <div>
-            <p>or Sign-in with Google:</p>
-          </div>
-          <div className="g-signin2" data-onsuccess="onSignIn"></div>
+
           {/* Buttons */}
         </form>
       </div>

@@ -37,7 +37,8 @@ class AddTransactionForm extends Component {
         `https://ironrest.herokuapp.com/flowFinanceWDFTSP/${userResponse.data._id}`,
         { ...userResponse.data[0], financeData }
       );
-      console.log(userUpdateResponse);
+      this.setState({ description: "", category: "", amount: "", date: "" });
+      window.alert("Transaction added to list!");
     } catch (err) {
       console.error(err);
     }
@@ -63,34 +64,25 @@ class AddTransactionForm extends Component {
               />
             </div>
           </div>
-          <div className="field m-2">
-            <label className="label">Category</label>
-            <div className="control">
-              <input
-                onChange={this.handleChange}
-                className="input"
-                type="text"
-                placeholder="e.g home or food, etc ..."
-                name="category"
-                value={this.state.category}
-              />
+
+          <div className="field has-addons m-2 d-flex flex-column">
+            <label className="label">Amount</label>
+            <div>
+              <p className="control">
+                <input
+                  onChange={this.handleChange}
+                  className="input"
+                  type="number"
+                  placeholder="Amount of money"
+                  name="amount"
+                  value={this.state.amount}
+                />
+              </p>
             </div>
           </div>
 
-          <div className="field has-addons m-2">
-            <p className="control">
-              <input
-                onChange={this.handleChange}
-                className="input"
-                type="number"
-                placeholder="Amount of money"
-                name="amount"
-                value={this.state.amount}
-              />
-            </p>
-          </div>
-
           <div className="control m-2">
+            <label className="label">Is it an Income or Expense?</label>
             <div className="select">
               <select name="category" onChange={this.handleChange}>
                 <option value="expense">Expense</option>
@@ -98,7 +90,9 @@ class AddTransactionForm extends Component {
               </select>
             </div>
           </div>
+
           <div className="control m-2">
+            <label className="label">When is it from?</label>
             <input
               onChange={this.handleChange}
               className="input is-primary"
