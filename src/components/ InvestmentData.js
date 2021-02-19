@@ -73,7 +73,7 @@ class InvestimentData extends React.Component {
               <tr key={item.pfId}>
                 <th>
                   <a
-                    href={`https://finance.yahoo.com/u/yahoo-finance/watchlists/${item.pfI}?.tsrc=fin-srch`}
+                    href={`https://finance.yahoo.com/u/yahoo-finance/watchlists/${item.pfId}?.tsrc=fin-srch`}
                   >
                     {item.name}
                   </a>
